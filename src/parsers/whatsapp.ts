@@ -22,6 +22,21 @@ const MEDIA_PATTERNS = [
   /document omitted/i,
   /sticker omitted/i,
   /GIF omitted/i,
+  // English media labels (without "omitted")
+  /^image$/i,
+  /^video$/i,
+  /^audio$/i,
+  /^sticker$/i,
+  /^document$/i,
+  /^gif$/i,
+  /^photo$/i,
+  /^voice message$/i,
+  /^video message$/i,
+  /^audio message$/i,
+  /^contact card$/i,
+  /^location$/i,
+  /^<attached:/i,
+  /^\d+ (KB|MB|GB)$/i,
   // Arabic WhatsApp labels
   /\u062a\u0645 \u0627\u0644\u062d\u0630\u0641/i, // تم الحذف (omitted)
   /\u0635\u0648\u0631\u0629/i, // صورة (image)
@@ -31,6 +46,17 @@ const MEDIA_PATTERNS = [
   /\u0645\u0633\u062a\u0646\u062f/i, // مستند (document)
   /\u0645\u0643\u0627\u0644\u0645\u0629 \u0635\u0648\u062a\u064a\u0629/i, // مكالمة صوتية (voice call)
   /\u0645\u0643\u0627\u0644\u0645\u0629 \u0641\u064a\u062f\u064a\u0648/i, // مكالمة فيديو (video call)
+  // Franco-Arabic media labels (Arabizi transliterations)
+  /soura/i, /sora/i, /sura/i, // صورة (image)
+  /molsa2/i, /mulsaq/i, /malsa2/i, /molsa2a/i, // ملصق (sticker)
+  /sawtiya/i, /sawteya/i, /sawti/i, /sawty/i, // رسالة صوتية (voice message)
+  /mostanad/i, /mostaned/i, // مستند (document)
+  /mokalma sawtiya/i, /mokalma video/i, // مكالمة (call)
+  /tam el.?7azf/i, /7azef/i, // تم الحذف (omitted/deleted)
+  /video call/i,
+  /voice call/i,
+  /missed voice call/i,
+  /missed video call/i,
   // Voice/video call system messages
   /voice call/i,
   /video call/i,

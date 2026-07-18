@@ -97,7 +97,16 @@ export const STOP_WORDS = new Set([
   // WhatsApp system/media junk words
   'omitted', 'image', 'video', 'audio', 'sticker', 'document', 'gif',
   'voice', 'media', 'pm', 'am', 'message', 'call', 'missed',
+  // More English media/system words
+  'photo', 'photos', 'location', 'contact', 'contacts', 'attached',
+  'kb', 'mb', 'gb', 'deleted', 'removed',
   // Franco-Arabic media labels
-  'soura', 'sora', 'sura', 'molsa2', 'mulsaq', 'sawti', 'sawteya',
-  '7azef', 'mostanad', 'video',
+  'soura', 'sora', 'sura', 'surat', // صورة (image)
+  'molsa2', 'mulsaq', 'malsa2', 'molsa2a', // ملصق (sticker)
+  'sawti', 'sawteya', 'sawtiya', 'sawty', // صوتية (voice)
+  '7azef', 'mostanad', 'mostaned', // مستند (document)
+  'mokalma', // مكالمة (call)
+  'tam', 'el7azf', 'elhazf', // تم الحذف (omitted/deleted)
+  // Franco-Arabic common chat filler that's not meaningful
+  'ya3ni', 'keda', 'bardo',
 ]);
