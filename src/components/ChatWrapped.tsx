@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { toPng } from 'html-to-image';
+import { toBlob } from 'html-to-image';
 import type { ChatAnalysis, ParsedData } from '../types';
 
 interface Props {
@@ -319,19 +319,32 @@ export default function ChatWrapped({ analysis, parsedData }: Props) {
     setCurrentSlide(i);
   }, [currentSlide]);
 
+  const [downloading, setDownloading] = useState(false);
+
   const handleDownload = useCallback(async () => {
     if (!wrappedRef.current) return;
+    setDownloading(true);
     try {
-      const dataUrl = await toPng(wrappedRef.current, {
+      const blob = await toBlob(wrappedRef.current, {
         backgroundColor: '#0f0f1a',
         pixelRatio: 2,
+        cacheBust: true,
+        skipFonts: true,
       });
+      if (!blob) throw new Error('Failed to generate image');
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.download = `chat-wrapped-${Date.now()}.png`;
-      link.href = dataUrl;
+      link.href = url;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     } catch (err) {
       console.error('Failed to export PNG:', err);
+      alert('Failed to download image. Please try again.');
+    } finally {
+      setDownloading(false);
     }
   }, []);
 
@@ -341,10 +354,11 @@ export default function ChatWrapped({ analysis, parsedData }: Props) {
         <h2 className="text-2xl font-bold text-chatter-text">Chat Wrapped</h2>
         <button
           onClick={handleDownload}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-black bg-chatter-accent rounded-lg hover:bg-chatter-accent/90 transition-colors"
+          disabled={downloading}
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium text-black bg-chatter-accent rounded-lg hover:bg-chatter-accent/90 transition-colors ${downloading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          <span>⬇️</span>
-          Download PNG
+          <span>{downloading ? '⏳' : '⬇️'}</span>
+          {downloading ? 'Generating...' : 'Download PNG'}
         </button>
       </div>
 
