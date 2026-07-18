@@ -1,4 +1,15 @@
+/* Hallmark · macrostructure: Workbench (preserved) · tone: atmospheric-dark · anchor hue: amber (38°)
+ * type: Space Grotesk (display) + Geist (body) · offline-safe via @fontsource
+ * pre-emit critique: P4 H4 E4 S4 R5 V4 · contrast: pass (40–41) · nav: N5(seg) · footer: Ft5 · slop: pass (42–45) · tokens: pass (48) · mobile: pass (34, 49, 50–57) */
 @import "tailwindcss";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/geist/400.css";
+@import "@fontsource/geist/500.css";
+@import "@fontsource/geist/600.css";
+@import "@fontsource/geist/700.css";
 
 @theme {
   --color-chatter-bg: #0f0f1a;
@@ -12,6 +23,29 @@
   --color-chatter-text-muted: #94a3b8;
   --color-chatter-success: #10b981;
   --color-chatter-error: #ef4444;
+
+  /* Hallmark type + system tokens (Tailwind-visible) */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --ch-radius-sm: 8px;
+  --ch-radius-md: 12px;
+  --ch-radius-lg: 16px;
+  --ch-radius-xl: 24px;
+  --ch-space-1: 4px;
+  --ch-space-2: 8px;
+  --ch-space-3: 12px;
+  --ch-space-4: 16px;
+  --ch-space-5: 24px;
+  --ch-space-6: 32px;
+  --ch-space-7: 48px;
+  --ch-space-8: 64px;
+  --ch-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ch-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ch-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ch-dur-fast: 0.15s;
+  --ch-dur-mid: 0.3s;
+  --ch-dur-slow: 0.6s;
+
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
@@ -22,13 +56,15 @@ html {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   background-color: var(--color-chatter-bg);
   color: var(--color-chatter-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
@@ -150,4 +186,77 @@ input, textarea, [contenteditable], pre, code {
 /* Hide ads when AdSense isn't configured */
 .ad-container:empty {
   display: none;
+}
+
+/* ─────────── Hallmark primitives ─────────── */
+
+/* Hide the horizontal scrollbar on the tab strip without losing scroll */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Unified card surface — replaces ad-hoc rounded-xl + border + bg combos */
+.ch-card {
+  background: var(--color-chatter-card);
+  border: 1px solid var(--color-chatter-border);
+  border-radius: var(--ch-radius-lg);
+  transition: border-color var(--ch-dur-fast) var(--ch-ease-out),
+    background-color var(--ch-dur-fast) var(--ch-ease-out),
+    transform var(--ch-dur-fast) var(--ch-ease-out);
+}
+
+.ch-card--hover:hover {
+  border-color: color-mix(in srgb, var(--color-chatter-accent) 35%, var(--color-chatter-border));
+}
+
+/* Section header — consistent rhythm across all Dashboard tabs */
+.ch-section-head {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-chatter-text);
+}
+
+/* Tabular figures for every data figure (avoids width jitter on count-up) */
+.ch-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Chart palette tokens — recharts + heatmap read from these so the
+   system colour lives in one place, not scattered hex per component */
+.ch-chart-grid { stroke: var(--color-chatter-border); }
+.ch-chart-axis { fill: var(--color-chatter-text-muted); }
+.ch-chart-tooltip {
+  background: var(--color-chatter-surface);
+  border: 1px solid var(--color-chatter-border);
+  border-radius: var(--ch-radius-md);
+  color: var(--color-chatter-text);
+}
+
+/* Focus ring — instant, never animated */
+:focus-visible {
+  outline: 2px solid var(--color-chatter-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced-motion floor — spatial motion collapses to a quick opacity crossfade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    transition-property: opacity !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-in-up,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
 }

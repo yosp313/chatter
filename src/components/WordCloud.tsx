@@ -41,7 +41,7 @@ export default function WordCloud({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-6">Word Cloud</h2>
+      <h2 className="ch-section-head text-2xl mb-6">Word Cloud</h2>
 
       {/* Person selector */}
       <div className="flex flex-wrap gap-2 mb-6">
@@ -104,7 +104,7 @@ export default function WordCloud({ analysis }: Props) {
       </div>
 
       {/* Top words list */}
-      <div className="mt-4 bg-chatter-card rounded-xl p-5 border border-chatter-border">
+      <div className="mt-4 ch-card p-5">
         <h3 className="text-sm font-medium text-chatter-text-muted mb-3">
           Top 10 Words
         </h3>

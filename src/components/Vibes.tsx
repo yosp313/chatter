@@ -152,7 +152,7 @@ export default function Vibes({ analysis }: Props) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-chatter-text">Chat Vibes</h2>
+        <h2 className="ch-section-head text-2xl">Chat Vibes</h2>
         <div className="flex gap-2">
           <button
             onClick={() => setActiveView(activeView === 'roast' ? 'stats' : 'roast')}
@@ -182,10 +182,10 @@ export default function Vibes({ analysis }: Props) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+                className="ch-card p-5"
               >
                 <p className="text-xs text-chatter-text-muted mb-1">🌙 Late Night Index</p>
-                <p className="text-3xl font-bold text-chatter-accent">{lateNightPct}%</p>
+                <p className="ch-num text-3xl font-bold text-chatter-accent">{lateNightPct}%</p>
                 <p className="text-xs text-chatter-text-muted mt-1">{lateNightLabel}</p>
               </motion.div>
 
@@ -193,10 +193,10 @@ export default function Vibes({ analysis }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 }}
-                className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+                className="ch-card p-5"
               >
                 <p className="text-xs text-chatter-text-muted mb-1">👀 Most Double Texts</p>
-                <p className="text-3xl font-bold text-chatter-text truncate">
+                <p className="ch-num text-3xl font-bold text-chatter-text truncate">
                   {sortedByDoubleText[0]?.[0] || '—'}
                 </p>
                 <p className="text-xs text-chatter-text-muted mt-1">
@@ -208,10 +208,10 @@ export default function Vibes({ analysis }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+                className="ch-card p-5"
               >
                 <p className="text-xs text-chatter-text-muted mb-1">💀 Conversation Starter</p>
-                <p className="text-3xl font-bold text-chatter-text truncate">
+                <p className="ch-num text-3xl font-bold text-chatter-text truncate">
                   {sortedByInitiative[0]?.[0] || '—'}
                 </p>
                 <p className="text-xs text-chatter-text-muted mt-1">
@@ -223,10 +223,10 @@ export default function Vibes({ analysis }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+                className="ch-card p-5"
               >
                 <p className="text-xs text-chatter-text-muted mb-1">🔥 Streak Score</p>
-                <p className="text-3xl font-bold text-chatter-accent">{a.streaks.longest} days</p>
+                <p className="ch-num text-3xl font-bold text-chatter-accent">{a.streaks.longest} days</p>
                 <p className="text-xs text-chatter-text-muted mt-1">
                   {a.streaks.current ? `${a.streaks.current} day current!` : 'Not currently active'}
                 </p>
@@ -295,7 +295,7 @@ export default function Vibes({ analysis }: Props) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="bg-chatter-card rounded-xl p-4 border border-chatter-border"
+                    className="ch-card p-4"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <p className="text-sm font-bold" style={{ color }}>{name}</p>
@@ -399,7 +399,7 @@ export default function Vibes({ analysis }: Props) {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="bg-chatter-card rounded-xl p-4 border border-chatter-border"
+                      className="ch-card p-4"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-lg">{emoji}</span>

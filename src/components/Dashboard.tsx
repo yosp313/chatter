@@ -45,11 +45,11 @@ export default function Dashboard({ analysis, parsedData, onReset }: Props) {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between mb-8"
       >
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">💬</span>
-          <div>
-            <h1 className="text-2xl font-bold text-chatter-accent">Chatter</h1>
-            <p className="text-xs text-chatter-text-muted">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="text-3xl shrink-0">💬</span>
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-chatter-accent font-display tracking-tight">Chatter</h1>
+            <p className="text-xs text-chatter-text-muted truncate">
               {parsedData.fileName} · {parsedData.messages.length.toLocaleString()} messages
               {parsedData.parseErrors > 0 && (
                 <span className="text-chatter-error ml-2">
@@ -61,28 +61,46 @@ export default function Dashboard({ analysis, parsedData, onReset }: Props) {
         </div>
         <button
           onClick={onReset}
-          className="px-4 py-2 text-sm text-chatter-text-muted hover:text-chatter-text bg-chatter-card border border-chatter-border rounded-lg hover:border-chatter-accent/50 transition-colors"
+          className="px-4 py-2 text-sm text-chatter-text-muted hover:text-chatter-text bg-chatter-card border border-chatter-border rounded-lg hover:border-chatter-accent/50 transition-colors shrink-0"
         >
           Upload New File
         </button>
       </motion.div>
 
-      {/* Tab navigation */}
-      <div className="flex gap-1 mb-6 overflow-x-auto pb-2">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-              activeTab === tab.id
-                ? 'bg-chatter-accent text-black shadow-lg shadow-chatter-accent/20'
-                : 'text-chatter-text-muted hover:text-chatter-text hover:bg-chatter-card'
-            }`}
-          >
-            <span>{tab.icon}</span>
-            {tab.label}
-          </button>
-        ))}
+      {/* Tab navigation — segmented control, sticky on scroll */}
+      <div className="sticky top-0 z-30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-2 pb-3 mb-6 bg-chatter-bg/80 backdrop-blur-md border-b border-chatter-border/60">
+        <div
+          role="tablist"
+          aria-label="Dashboard sections"
+          className="flex gap-1 overflow-x-auto no-scrollbar"
+        >
+          {TABS.map((tab) => {
+            const active = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={active}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                  active
+                    ? 'text-black'
+                    : 'text-chatter-text-muted hover:text-chatter-text hover:bg-chatter-card'
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="tab-pill"
+                    className="absolute inset-0 rounded-lg bg-chatter-accent"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{tab.icon}</span>
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Tab content */}
@@ -111,11 +129,25 @@ export default function Dashboard({ analysis, parsedData, onReset }: Props) {
       <AdUnit slot="dashboard-bottom" className="mt-8 mb-4" />
 
       {/* Footer */}
-      <div className="mt-12 pt-6 border-t border-chatter-border text-center">
-        <p className="text-xs text-chatter-text-muted/40">
-          All data processed locally in your browser · No data ever uploaded
-        </p>
-      </div>
+      <footer className="mt-12 pt-8 border-t border-chatter-border">
+        <div className="grid gap-6 sm:grid-cols-3 sm:items-start">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">💬</span>
+            <span className="font-display font-semibold tracking-tight text-chatter-text">Chatter</span>
+          </div>
+          <p className="text-xs leading-relaxed text-chatter-text-muted sm:text-center">
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden>🔒</span>
+              All data processed locally in your browser.
+            </span>
+            <br className="hidden sm:block" />
+            Nothing is ever uploaded.
+          </p>
+          <p className="text-xs text-chatter-text-muted/50 sm:text-right">
+            Reads WhatsApp <code className="font-mono">_chat.txt</code> exports
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

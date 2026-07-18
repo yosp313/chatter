@@ -40,7 +40,7 @@ export default function ResponseTime({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-2">Response Times</h2>
+      <h2 className="ch-section-head text-2xl mb-2">Response Times</h2>
       <p className="text-sm text-chatter-text-muted mb-6">
         How fast does everyone reply? Measured from the last message to the next
         when the sender changes. Gaps over 7 days are excluded.
@@ -51,20 +51,20 @@ export default function ResponseTime({ analysis }: Props) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+          className="ch-card p-5"
         >
           <p className="text-xs text-chatter-text-muted mb-1">⚡ Avg Reply Time</p>
-          <p className="text-3xl font-bold text-chatter-accent">{fmt(rt.overall.avgSeconds)}</p>
+          <p className="ch-num text-3xl font-bold text-chatter-accent">{fmt(rt.overall.avgSeconds)}</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+          className="ch-card p-5"
         >
           <p className="text-xs text-chatter-text-muted mb-1">🏆 Fastest</p>
-          <p className="text-3xl font-bold text-emerald-400">
+          <p className="ch-num text-3xl font-bold text-emerald-400">
             {rt.fastest.name !== '—' ? rt.fastest.name : '—'}
           </p>
           <p className="text-xs text-chatter-text-muted mt-1">
@@ -76,10 +76,10 @@ export default function ResponseTime({ analysis }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+          className="ch-card p-5"
         >
           <p className="text-xs text-chatter-text-muted mb-1">🐢 Slowest</p>
-          <p className="text-3xl font-bold text-red-400">
+          <p className="ch-num text-3xl font-bold text-red-400">
             {rt.slowest.name !== '—' ? rt.slowest.name : '—'}
           </p>
           <p className="text-xs text-chatter-text-muted mt-1">
@@ -91,10 +91,10 @@ export default function ResponseTime({ analysis }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+          className="ch-card p-5"
         >
           <p className="text-xs text-chatter-text-muted mb-1">👻 Ghosted</p>
-          <p className="text-3xl font-bold text-chatter-text">
+          <p className="ch-num text-3xl font-bold text-chatter-text">
             {rt.overall.ghosted > 0 ? `${rt.overall.ghosted}x` : '0'}
           </p>
           <p className="text-xs text-chatter-text-muted mt-1">
@@ -160,7 +160,7 @@ export default function ResponseTime({ analysis }: Props) {
 
       {/* Best / Worst Pair */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-        <div className="bg-chatter-card rounded-xl p-5 border border-chatter-border">
+        <div className="ch-card p-5">
           <h3 className="text-sm font-semibold text-chatter-text mb-3">⚡ Fastest Pair</h3>
           {rt.bestPair.from !== '—' ? (
             <div>
@@ -176,7 +176,7 @@ export default function ResponseTime({ analysis }: Props) {
           )}
         </div>
 
-        <div className="bg-chatter-card rounded-xl p-5 border border-chatter-border">
+        <div className="ch-card p-5">
           <h3 className="text-sm font-semibold text-chatter-text mb-3">🐢 Slowest Pair</h3>
           {rt.worstPair.from !== '—' ? (
             <div>
@@ -203,7 +203,7 @@ export default function ResponseTime({ analysis }: Props) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="bg-chatter-card rounded-xl p-4 border border-chatter-border"
+              className="ch-card p-4"
             >
               <p className="text-sm font-bold mb-2" style={{ color }}>{name}</p>
               <div className="grid grid-cols-3 gap-2 text-center">

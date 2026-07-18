@@ -7,7 +7,7 @@
  */
 export const ADSENSE = {
   /** Your AdSense publisher ID — set this to enable ads */
-  PUBLISHER_ID: '',
+  PUBLISHER_ID: 'ca-pub-6770811259467826',
 
   /** Whether ads are enabled */
   get ENABLED() {

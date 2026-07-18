@@ -20,7 +20,7 @@ export default function EmojiWall({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-6">Emoji Wall</h2>
+      <h2 className="ch-section-head text-2xl mb-6">Emoji Wall</h2>
 
       {/* Top emoji grid - size = frequency */}
       <div className="bg-chatter-card rounded-xl p-6 border border-chatter-border mb-6">
@@ -74,7 +74,7 @@ export default function EmojiWall({ analysis }: Props) {
           return (
             <div
               key={sender}
-              className="bg-chatter-card rounded-xl p-5 border border-chatter-border"
+              className="ch-card p-5"
             >
               <div className="flex items-center gap-2 mb-3">
                 <div

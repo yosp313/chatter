@@ -13,7 +13,7 @@ import type { Message } from '../types';
 // Captures: dateString, timeString, sender
 const HEADER_REGEX = /^\[(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}),\s(\d{1,2}:\d{2}(?::\d{2})?(?:\s?[APap][Mm])?)\]\s(.+?):\s/;
 
-// Media message patterns
+// Media message patterns — WhatsApp system labels for attachments
 const MEDIA_PATTERNS = [
   /<Media omitted>/i,
   /image omitted/i,
@@ -22,6 +22,20 @@ const MEDIA_PATTERNS = [
   /document omitted/i,
   /sticker omitted/i,
   /GIF omitted/i,
+  // Arabic WhatsApp labels
+  /\u062a\u0645 \u0627\u0644\u062d\u0630\u0641/i, // تم الحذف (omitted)
+  /\u0635\u0648\u0631\u0629/i, // صورة (image)
+  /\u0641\u064a\u062f\u064a\u0648/i, // فيديو (video)
+  /\u0645\u0644\u0635\u0642/i, // ملصق (sticker)
+  /\u0631\u0633\u0627\u0644\u0629 \u0635\u0648\u062a\u064a\u0629/i, // رسالة صوتية (voice message)
+  /\u0645\u0633\u062a\u0646\u062f/i, // مستند (document)
+  /\u0645\u0643\u0627\u0644\u0645\u0629 \u0635\u0648\u062a\u064a\u0629/i, // مكالمة صوتية (voice call)
+  /\u0645\u0643\u0627\u0644\u0645\u0629 \u0641\u064a\u062f\u064a\u0648/i, // مكالمة فيديو (video call)
+  // Voice/video call system messages
+  /voice call/i,
+  /video call/i,
+  /missed voice call/i,
+  /missed video call/i,
 ];
 
 // System message patterns to skip

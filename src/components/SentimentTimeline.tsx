@@ -79,7 +79,7 @@ export default function SentimentTimeline({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-2">Sentiment Timeline</h2>
+      <h2 className="ch-section-head text-2xl mb-2">Sentiment Timeline</h2>
       <p className="text-sm text-chatter-text-muted mb-6">
         Message mood over time based on word choice (no AI — pure wordlist analysis).
         Everything stays in your browser.
@@ -123,7 +123,7 @@ export default function SentimentTimeline({ analysis }: Props) {
       </div>
 
       {/* Combined chart: bars for messages + line for sentiment */}
-      <div className="bg-chatter-card rounded-xl p-5 border border-chatter-border mb-6">
+      <div className="ch-card p-5 mb-6">
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#2a2a4a" />
@@ -206,7 +206,7 @@ export default function SentimentTimeline({ analysis }: Props) {
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+        <div className="ch-card p-4">
           <p className="text-xs text-chatter-text-muted mb-1">Average Sentiment</p>
           <p
             className="text-xl font-bold"
@@ -230,7 +230,7 @@ export default function SentimentTimeline({ analysis }: Props) {
         </div>
 
         {mostPositive && (
-          <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+          <div className="ch-card p-4">
             <p className="text-xs text-chatter-text-muted mb-1">Most Positive Day</p>
             <p className="text-xl font-bold text-emerald-400">
               +{mostPositive.sentiment.toFixed(2)}
@@ -240,7 +240,7 @@ export default function SentimentTimeline({ analysis }: Props) {
         )}
 
         {mostNegative && (
-          <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+          <div className="ch-card p-4">
             <p className="text-xs text-chatter-text-muted mb-1">Most Negative Day</p>
             <p className="text-xl font-bold text-red-400">
               {mostNegative.sentiment.toFixed(2)}

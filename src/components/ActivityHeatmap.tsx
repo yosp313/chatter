@@ -90,7 +90,7 @@ export default function ActivityHeatmap({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-4">Activity Heatmap</h2>
+      <h2 className="ch-section-head text-2xl mb-4">Activity Heatmap</h2>
       <p className="text-chatter-text-muted text-sm mb-6">
         Most active time:{' '}
         <span className="text-chatter-accent font-medium">

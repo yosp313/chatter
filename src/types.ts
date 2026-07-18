@@ -94,4 +94,10 @@ export const STOP_WORDS = new Set([
   'shouldnt', 'havent', 'hasnt', 'hadnt', 'cant', 'wont', 'isnt', 'arent',
   'ive', 'youve', 'weve', 'theyve', 'id', 'youll', 's', 't', 're', 've',
   'll', 'm', 'de', 'la', 'el', 'en', 'un', 'que', 'no', 'se', 'lo',
+  // WhatsApp system/media junk words
+  'omitted', 'image', 'video', 'audio', 'sticker', 'document', 'gif',
+  'voice', 'media', 'pm', 'am', 'message', 'call', 'missed',
+  // Franco-Arabic media labels
+  'soura', 'sora', 'sura', 'molsa2', 'mulsaq', 'sawti', 'sawteya',
+  '7azef', 'mostanad', 'video',
 ]);

@@ -85,7 +85,7 @@ export default function Timeline({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-4">Timeline</h2>
+      <h2 className="ch-section-head text-2xl mb-4">Timeline</h2>
 
       {/* View toggle */}
       <div className="flex gap-2 mb-6">
@@ -105,7 +105,7 @@ export default function Timeline({ analysis }: Props) {
       </div>
 
       {/* Chart */}
-      <div className="bg-chatter-card rounded-xl p-5 border border-chatter-border mb-6">
+      <div className="ch-card p-5 mb-6">
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
@@ -148,7 +148,7 @@ export default function Timeline({ analysis }: Props) {
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+        <div className="ch-card p-4">
           <p className="text-xs text-chatter-text-muted mb-1">Longest Streak</p>
           <p className="text-xl font-bold text-chatter-text">
             {analysis.streaks.longest} days{' '}
@@ -157,7 +157,7 @@ export default function Timeline({ analysis }: Props) {
         </div>
 
         {busiestDay && (
-          <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+          <div className="ch-card p-4">
             <p className="text-xs text-chatter-text-muted mb-1">Busiest Day</p>
             <p className="text-xl font-bold text-chatter-text">
               {busiestDay.count.toLocaleString()} msgs
@@ -167,7 +167,7 @@ export default function Timeline({ analysis }: Props) {
         )}
 
         {analysis.streaks.current !== undefined && (
-          <div className="bg-chatter-card rounded-xl p-4 border border-chatter-border">
+          <div className="ch-card p-4">
             <p className="text-xs text-chatter-text-muted mb-1">Current Streak</p>
             <p className="text-xl font-bold text-chatter-text">
               {analysis.streaks.current} days{' '}

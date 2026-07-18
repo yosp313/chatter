@@ -64,7 +64,7 @@ export default function Overview({ analysis }: Props) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-chatter-text mb-6">Overview</h2>
+      <h2 className="ch-section-head text-2xl mb-6">Overview</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((card, i) => (
@@ -73,12 +73,12 @@ export default function Overview({ analysis }: Props) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05, duration: 0.3 }}
-            className="bg-chatter-card rounded-xl p-5 border border-chatter-border hover:border-chatter-accent/30 transition-colors"
+            className="ch-card ch-card--hover p-5"
           >
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-chatter-text-muted text-sm mb-1">{card.label}</p>
-                <p className="text-3xl font-bold text-chatter-text">{card.value}</p>
+                <p className="ch-num text-3xl font-bold text-chatter-text">{card.value}</p>
               </div>
               <span className="text-2xl">{card.icon}</span>
             </div>
@@ -86,7 +86,7 @@ export default function Overview({ analysis }: Props) {
         ))}
       </div>
 
-      <div className="mt-6 bg-chatter-card rounded-xl p-5 border border-chatter-border">
+      <div className="ch-card mt-6 p-5">
         <p className="text-chatter-text-muted text-sm">
           Chat from{' '}
           <span className="text-chatter-text font-medium">

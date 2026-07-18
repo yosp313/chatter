@@ -216,23 +216,25 @@ export function analyzeMessages(messages: Message[]): ChatAnalysis {
       mediaBySender[msg.sender] = (mediaBySender[msg.sender] || 0) + 1;
     }
 
-    // Word count
-    const words = msg.text
-      .replace(/[^\w\s']|_/g, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length > 0);
-    totalWords += words.length;
-    wordsBySender[msg.sender] = (wordsBySender[msg.sender] || 0) + words.length;
+    // Word count — skip media messages (system labels like "image omitted")
+    if (!msg.isMedia) {
+      const words = msg.text
+        .replace(/[^\w\s']|_/g, ' ')
+        .split(/\s+/)
+        .filter((w) => w.length > 0);
+      totalWords += words.length;
+      wordsBySender[msg.sender] = (wordsBySender[msg.sender] || 0) + words.length;
 
-    // Message length tracking
-    if (!senderMessageLengths[msg.sender]) senderMessageLengths[msg.sender] = [];
-    senderMessageLengths[msg.sender].push(msg.text.length);
+      // Message length tracking — only for real text messages
+      if (!senderMessageLengths[msg.sender]) senderMessageLengths[msg.sender] = [];
+      senderMessageLengths[msg.sender].push(msg.text.length);
 
-    // Word frequency
-    for (const word of words) {
-      const lower = word.toLowerCase().replace(/^['']+|['']+$/g, '');
-      if (lower.length > 1 && !STOP_WORDS.has(lower) && /^[a-zA-Z]/.test(lower)) {
-        wordCounts[lower] = (wordCounts[lower] || 0) + 1;
+      // Word frequency
+      for (const word of words) {
+        const lower = word.toLowerCase().replace(/^['']+|['']+$/g, '');
+        if (lower.length > 1 && !STOP_WORDS.has(lower) && /^[a-zA-Z]/.test(lower)) {
+          wordCounts[lower] = (wordCounts[lower] || 0) + 1;
+        }
       }
     }
 
