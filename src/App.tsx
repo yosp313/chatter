@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useChatAnalysis } from './hooks/useChatAnalysis';
 import UploadZone from './components/UploadZone';
 import Dashboard from './components/Dashboard';
+import AdSenseScript from './components/AdSenseScript';
 
 export default function App() {
   const { parsedData, analysis, isLoading, error, handleFile, reset } =
@@ -9,6 +10,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-chatter-bg">
+      <AdSenseScript />
+
       <AnimatePresence mode="wait">
         {analysis && parsedData ? (
           <Dashboard

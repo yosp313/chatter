@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import AdUnit from './AdUnit';
 
 interface Props {
   onFile: (file: File) => void;
@@ -140,6 +141,9 @@ export default function UploadZone({ onFile, isLoading }: Props) {
         <span>🔒</span>
         All processing is done locally in your browser. No data is ever uploaded.
       </motion.p>
+
+      {/* Ad unit — below upload zone */}
+      <AdUnit slot="upload-bottom" className="mt-8" />
     </div>
   );
 }

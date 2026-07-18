@@ -10,6 +10,7 @@ import ChatWrapped from './ChatWrapped';
 import SentimentTimeline from './SentimentTimeline';
 import ResponseTime from './ResponseTime';
 import Vibes from './Vibes';
+import AdUnit from './AdUnit';
 import type { ChatAnalysis, ParsedData } from '../types';
 
 interface Props {
@@ -105,6 +106,9 @@ export default function Dashboard({ analysis, parsedData, onReset }: Props) {
           {activeTab === 'wrapped' && <ChatWrapped analysis={analysis} parsedData={parsedData} />}
         </motion.div>
       </AnimatePresence>
+
+      {/* Ad unit — between content and footer */}
+      <AdUnit slot="dashboard-bottom" className="mt-8 mb-4" />
 
       {/* Footer */}
       <div className="mt-12 pt-6 border-t border-chatter-border text-center">
