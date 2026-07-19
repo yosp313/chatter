@@ -186,6 +186,7 @@ export default function Vibes({ analysis }: Props) {
       <AnimatePresence mode="wait">
         {activeView === 'stats' ? (
           <motion.div
+            ref={cardRef}
             key="stats"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -336,6 +337,7 @@ export default function Vibes({ analysis }: Props) {
           </motion.div>
         ) : (
           <motion.div
+            ref={cardRef}
             key="roast"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -356,7 +358,6 @@ export default function Vibes({ analysis }: Props) {
             </div>
 
             <div
-              ref={cardRef}
               className="relative overflow-hidden rounded-2xl border border-chatter-border mx-auto"
               style={{ width: '100%', maxWidth: 520, minHeight: 600 }}
             >
